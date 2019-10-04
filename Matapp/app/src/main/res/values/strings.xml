@@ -1,5 +1,15 @@
 <resources>
     <string name="app_name">Matapp</string>
+    <string-array name="myFood">
+        <item>Mais</item>
+        <item>Eple</item>
+        <item>Agurk</item>
+        <item>Tomat</item>
+        <item>Potet</item>
+        <item>Kjøttdeig</item>
+        <item>Fløte</item>
+        <item>Melk</item>
+    </string-array>
     <string name="Kyllingsalat">Kyllingsalat</string>
     <string name="BBQpizza">BBQ-pizza</string>
     <string name="kyllingsalat">Kyllingsalat</string>
