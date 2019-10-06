@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import java.util.Objects;
+
 public class Login extends AppCompatActivity {
 
     @Override
@@ -23,7 +25,7 @@ public class Login extends AppCompatActivity {
         SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.nattmodus), Context.MODE_PRIVATE);
         String sjekk = sharedPref.getString("nattmodus", null);
 
-        if(sjekk.equals("Sann")) {
+        if(Objects.equals(sjekk, "Sann")) {
             setContentView(R.layout.activity_login_dark);
         }
         else{

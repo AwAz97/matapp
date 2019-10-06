@@ -7,6 +7,8 @@ import android.widget.CheckBox;
 import android.os.Bundle;
 import android.widget.CompoundButton;
 
+import java.util.Objects;
+
 
 public class Instillinger extends AppCompatActivity {
 
@@ -50,7 +52,7 @@ public class Instillinger extends AppCompatActivity {
             SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.nattmodus), Context.MODE_PRIVATE);
             String sjekk = sharedPref.getString("nattmodus", null);
 
-            if(sjekk.equals("Sann")) {
+            if(Objects.equals(sjekk, "Sann")) {
                 nattmodus.setChecked(true);
                 System.out.println("SATT AN TE SANN");
             }
@@ -67,12 +69,13 @@ public class Instillinger extends AppCompatActivity {
         SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.nattmodus), Context.MODE_PRIVATE);
         String sjekk = sharedPref.getString("nattmodus", null);
 
-        if(sjekk.equals("Sann")) {
+        if(Objects.equals(sjekk, "Sann")) {
             nattmodus.setChecked(true);
             System.out.println("SATT AN TE SANN");
         }
         else{
             nattmodus.setChecked(false);
+
         }
     }
 

@@ -38,19 +38,6 @@
         app:layout_constraintTop_toBottomOf="@+id/Login"
         app:layout_constraintVertical_bias="0.077" />
 
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="142dp"
-        android:layout_height="30dp"
-        android:text="Vis passord"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3"
-        app:layout_constraintVertical_bias="0.053" />
-
     <EditText
         android:id="@+id/editText3"
         android:layout_width="wrap_content"

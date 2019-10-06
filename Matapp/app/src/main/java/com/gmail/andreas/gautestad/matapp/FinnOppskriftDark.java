@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class FinnOppskriftDark extends AppCompatActivity {
 
@@ -51,7 +52,7 @@ public class FinnOppskriftDark extends AppCompatActivity {
         SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.nattmodus), Context.MODE_PRIVATE);
         String sjekk = sharedPref.getString("nattmodus", null);
 
-        if(sjekk.equals("Sann")) {
+        if(Objects.equals(sjekk, "Sann")) {
             setContentView(R.layout.activity_finn_oppskrift_dark);
         }
         else{
