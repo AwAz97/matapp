@@ -2,17 +2,41 @@ package com.gmail.andreas.gautestad.matapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+
 public class MainActivity extends AppCompatActivity {
+
+    boolean nightMode = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+
+        Context context = getApplicationContext();
+        SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.nattmodus), Context.MODE_PRIVATE);
+        String sjekk = sharedPref.getString("nattmodus", null);
+
+        if(sjekk.equals("Sann")) {
+            setContentView(R.layout.activity_main_dark);
+        }
+        else{
+            setContentView(R.layout.activity_main);
+        }
+
     }
 
     public void goToFinnOppskrift(View view) {

@@ -18,7 +18,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class FinnOppskrift extends AppCompatActivity {
+public class FinnOppskriftDark extends AppCompatActivity {
 
     ListView searchFood;
     ArrayAdapter<String> adapter;
@@ -26,7 +26,7 @@ public class FinnOppskrift extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_finn_oppskrift);
+        setContentView(R.layout.activity_finn_oppskrift_dark);
 
         searchFood = (ListView) findViewById(R.id.searchFood);
 
@@ -34,12 +34,30 @@ public class FinnOppskrift extends AppCompatActivity {
         arrayFood.addAll(Arrays.asList(getResources().getStringArray(R.array.myFood)));
 
         adapter = new ArrayAdapter<String>(
-                FinnOppskrift.this,
-                android.R.layout.simple_list_item_1,
+                FinnOppskriftDark.this,
+                android.R.layout. simple_list_item_1,
                 arrayFood
         );
 
         searchFood.setAdapter(adapter);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+
+        Context context = getApplicationContext();
+        SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.nattmodus), Context.MODE_PRIVATE);
+        String sjekk = sharedPref.getString("nattmodus", null);
+
+        if(sjekk.equals("Sann")) {
+            setContentView(R.layout.activity_finn_oppskrift_dark);
+        }
+        else{
+            setContentView(R.layout.activity_finn_oppskrift);
+        }
+
     }
 
     @Override
