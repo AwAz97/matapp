@@ -5,7 +5,7 @@
     android:id="@+id/instillinger"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DDDADA"
+    android:background="#2B2626"
     tools:context=".Instillinger">
 
     <TextView
@@ -32,5 +32,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.211" />
+        app:layout_constraintVertical_bias="0.44" />
 </androidx.constraintlayout.widget.ConstraintLayout>
