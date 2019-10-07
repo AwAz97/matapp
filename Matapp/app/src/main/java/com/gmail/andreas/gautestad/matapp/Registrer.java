@@ -2,9 +2,13 @@ package com.gmail.andreas.gautestad.matapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+
+import java.util.Objects;
 
 public class Registrer extends AppCompatActivity {
 

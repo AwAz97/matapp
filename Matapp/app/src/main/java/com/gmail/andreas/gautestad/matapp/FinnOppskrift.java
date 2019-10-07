@@ -3,13 +3,19 @@ package com.gmail.andreas.gautestad.matapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -17,52 +23,69 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
-public class FinnOppskrift extends AppCompatActivity {
+public class FinnOppskrift extends Activity {
 
-    ListView searchFood;
-    ArrayAdapter<String> adapter;
+    private ListView listView;
+
+    private String lv_arr [] = {"Mais", "Tomat", "Potet", "Kjøttdeig", "Eple", "Agurk", "Melk"};
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_finn_oppskrift);
 
-        searchFood = (ListView) findViewById(R.id.searchFood);
+        listView = (ListView) findViewById(R.id.searchFood);
 
-        ArrayList<String> arrayFood = new ArrayList<>();
-        arrayFood.addAll(Arrays.asList(getResources().getStringArray(R.array.myFood)));
+        listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, lv_arr));
 
-        adapter = new ArrayAdapter<String>(
-                FinnOppskrift.this,
-                android.R.layout.simple_list_item_1,
-                arrayFood
-        );
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        searchFood.setAdapter(adapter);
-    }
+                if (position == 0) {
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.search_menu, menu);
-        MenuItem item = menu.findItem(R.id.searchFood);
-        SearchView searchView = (SearchView) item.getActionView();
+                    Intent myIntent = new Intent(FinnOppskrift.this, Mais.class);
+                    startActivityForResult(myIntent, 0);
+                }
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
+                if (position == 1) {
 
-            @Override
-            public boolean onQueryTextChange(String s) {
-                adapter.getFilter().filter(s);
-                return false;
+                    Intent myIntent = new Intent(FinnOppskrift.this, Tomat.class);
+                    startActivityForResult(myIntent, 0);
+                }
+
+                if (position == 2) {
+
+                    Intent myIntent = new Intent(FinnOppskrift.this, Potet.class);
+                    startActivityForResult(myIntent, 0);
+                }
+
+                if (position == 3) {
+
+                    Intent myIntent = new Intent(FinnOppskrift.this, Kjottdeig.class);
+                    startActivityForResult(myIntent, 0);
+                }
+
+                if (position == 4) {
+
+                    Intent myIntent = new Intent(FinnOppskrift.this, Eple.class);
+                    startActivityForResult(myIntent, 0);
+                }
+
+                if (position == 5) {
+
+                    Intent myIntent = new Intent(FinnOppskrift.this, Agurk.class);
+                    startActivityForResult(myIntent, 0);
+                }
+
+                if (position == 6) {
+
+                    Intent myIntent = new Intent(FinnOppskrift.this, Melk.class);
+                    startActivityForResult(myIntent, 0);
+                }
             }
         });
-
-        return super.onCreateOptionsMenu(menu);
-
     }
 }
