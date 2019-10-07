@@ -75,4 +75,6 @@ public class Instillinger extends AppCompatActivity {
             nattmodus.setChecked(false);
         }
     }
+
+
 }
