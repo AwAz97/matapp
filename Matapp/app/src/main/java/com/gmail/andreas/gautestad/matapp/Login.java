@@ -32,22 +32,24 @@ import java.util.Objects;
 
 public class Login extends AppCompatActivity {
 
-    EditText Brukernavn, Passord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Brukernavn = (EditText)findViewById(R.id.brukernavn);
-        Passord = (EditText)findViewById(R.id.passord);
+
     }
 
-public void OnLogin(View view) {
-    String brukernavn = Brukernavn.getText().toString();
-    String passord = Passord.getText().toString();
-    String type = "login";
-    Bakgrunn bakgrunnJobb = new Bakgrunn(this);
-    bakgrunnJobb.execute(type, brukernavn, passord);
+    public void OnLogin(View view) {
+        EditText Brukernavn = findViewById(R.id.brukernavn);
+        EditText Passord = findViewById(R.id.passord);
+        String brukernavn = Brukernavn.getText().toString();
+        String passord = Passord.getText().toString();
+
+        SjekkBruker bruker = new SjekkBruker();
+        bruker.setString(brukernavn, passord);
+        bruker.execute();
+
 }
     @Override
     public void onResume(){
@@ -73,84 +75,85 @@ public void OnLogin(View view) {
     }
 
     public void nextAct(){
-        Intent next = new Intent(this, MainActivity.class);
+        Intent next = new Intent(this, innLogged.class);
         startActivity(next);
     }
 
-    public class Bakgrunn extends AsyncTask<String,Void,String> {
-        AlertDialog alertDialog;
-        String utTxt;
-        String Endpoint="https://web01.usn.no/~216728/api.php/";
-        public void setString(String brukernavn, String passord){
-            utTxt = Endpoint + "records/Spiller/?include=brukernavn,passord&filter=brukernavn,eq," +brukernavn + "&filter=passord,eq," + passord;
-        }
-        @Override
-        protected String doInBackground(String... params) {
-            HttpURLConnection connection = null;
-            StringBuilder response = new StringBuilder();
-            try {
-                //System.out.println("Hei");
-                connection = (HttpURLConnection) new URL(utTxt).openConnection();
-                connection.connect();
+   class SjekkBruker extends AsyncTask<String, String, String> {
 
-                int status = connection.getResponseCode();
-                System.out.println("Status kode er: " + status);
-                System.out.println("Hent Bruker: " + utTxt);
-                if (status == HttpURLConnection.HTTP_OK) {
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        //response.append(reader.readLine())
-                        response.append(line);
-                        System.out.println("Appender til response: " + line);
-                    }
+       String utTxt;
+       public final String Endpoint = "https://web01.usn.no/~216728/api.php/";
 
-                }
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
+       public void setString(String brukernavn, String passord) {
+           utTxt = Endpoint + "records/brukere/?include=brukernavn,passord&filter=brukernavn,eq," + brukernavn + "&filter=passord,eq," + passord;
+           //System.out.println("Sjekk link: " + utTxt);
 
-                if (connection != null)
-                    connection.disconnect();
+       }
 
-                System.out.println("Yeet1" + response.toString());
-                return response.toString();
-            }
-        }
+       @Override
+       protected String doInBackground(String... params) {
+           HttpURLConnection connection = null;
+           StringBuilder response = new StringBuilder();
+           try {
+               //System.out.println("Hei");
+               connection = (HttpURLConnection) new URL(utTxt).openConnection();
+               System.out.println("Hent Bruker: " + utTxt);
+               connection.connect();
 
+               int status = connection.getResponseCode();
+               System.out.println("Status kode er: " + status);
 
-        @Override
-        protected void onPostExecute(String result) {
-            try {
-                JSONObject bruker = new JSONObject();
+               if (status == HttpURLConnection.HTTP_OK) {
+                   BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                   String line;
+                   while ((line = reader.readLine()) != null) {
+                       //response.append(reader.readLine())
+                       response.append(line);
+                       System.out.println("Appender til response: " + line);
+                   }
 
-                JSONArray brukerArray = bruker.getJSONArray("records");
-                System.out.println("Bruker array: " + brukerArray.length());
+               }
+           } catch (MalformedURLException e) {
+               e.printStackTrace();
+           } catch (IOException e) {
+               e.printStackTrace();
+           } catch (Exception e) {
+               e.printStackTrace();
+           } finally {
 
-                loginBruker(brukerArray);
+               if (connection != null)
+                   connection.disconnect();
 
-            }
-            catch (JSONException e){
-                Log.e("Ugyldig JSON data", e.getMessage());
-            }
-            alertDialog.setMessage(result);
-            alertDialog.show();
-        }
-
-        public void loginBruker(JSONArray brukere){
-            if(brukere == null || brukere.length()<1){
-                Toast.makeText(Login.this, "Feil brukernavn eller passord", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(Login.this, "Du er logget inn", Toast.LENGTH_SHORT).show();
-                nextAct();
-            }
-        }
+               System.out.println("Yeet1 : " + response.toString());
+               return response.toString();
+           }
+       }
 
 
-    }
+       @Override
+       protected void onPostExecute(String result) {
+           try {
+               Log.i("Debug result", " " + result);
+               JSONObject bruker = new JSONObject(result);
 
+               JSONArray brukerArray = bruker.getJSONArray("records");
+               System.out.println("Bruker array: " + brukerArray.length());
+
+               loginBruker(brukerArray);
+
+           } catch (JSONException e) {
+               Log.e("Ugyldig JSON data", e.getMessage());
+               e.printStackTrace();
+           }
+       }
+
+       public void loginBruker(JSONArray brukere) {
+           if (brukere == null || brukere.length() < 1) {
+               Toast.makeText(Login.this, "Feil brukernavn eller passord", Toast.LENGTH_SHORT).show();
+           } else {
+               Toast.makeText(Login.this, "Du er logget inn", Toast.LENGTH_SHORT).show();
+               nextAct();
+           }
+       }
+   }
 }

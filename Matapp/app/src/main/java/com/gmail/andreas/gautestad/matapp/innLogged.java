@@ -12,7 +12,7 @@ import android.view.View;
 import java.util.Objects;
 
 
-public class MainActivity extends AppCompatActivity {
+public class innLogged extends AppCompatActivity {
 
     boolean nightMode = false;
 
@@ -44,11 +44,6 @@ public class MainActivity extends AppCompatActivity {
     public void goToFinnOppskrift(View view) {
         Intent i1 = new Intent(this, FinnOppskrift.class);
         startActivity(i1);
-    }
-
-    public void goToLogin(View view) {
-        Intent i2 = new Intent(this, Login.class);
-        startActivity(i2);
     }
 
     public void goToFavoritter(View view) {
