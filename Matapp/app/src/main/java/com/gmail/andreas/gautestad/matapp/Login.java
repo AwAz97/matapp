@@ -3,6 +3,7 @@ package com.gmail.andreas.gautestad.matapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -45,5 +46,10 @@ public void OnLogin(View view) {
             setContentView(R.layout.activity_login);
         }
 
+    }
+
+    public void goToRegistrer(View view) {
+        Intent i1 = new Intent(this, Registrer.class);
+        startActivity(i1);
     }
 }
