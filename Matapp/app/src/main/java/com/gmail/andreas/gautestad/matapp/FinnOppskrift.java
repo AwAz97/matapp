@@ -1,29 +1,20 @@
 package com.gmail.andreas.gautestad.matapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
-import android.app.ListActivity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
+import com.gmail.andreas.gautestad.matapp.Food.Agurk;
+import com.gmail.andreas.gautestad.matapp.Food.Eple;
+import com.gmail.andreas.gautestad.matapp.Food.Kjottdeig;
+import com.gmail.andreas.gautestad.matapp.Food.Mais;
+import com.gmail.andreas.gautestad.matapp.Food.Melk;
+import com.gmail.andreas.gautestad.matapp.Food.Potet;
+import com.gmail.andreas.gautestad.matapp.Food.Tomat;
 
 public class FinnOppskrift extends Activity {
 

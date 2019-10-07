@@ -1,8 +1,10 @@
-package com.gmail.andreas.gautestad.matapp;
+package com.gmail.andreas.gautestad.matapp.Food;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.gmail.andreas.gautestad.matapp.R;
 
 public class Kjottdeig extends AppCompatActivity {
 

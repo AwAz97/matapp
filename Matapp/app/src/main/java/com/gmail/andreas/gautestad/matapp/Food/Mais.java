@@ -1,14 +1,16 @@
-package com.gmail.andreas.gautestad.matapp;
+package com.gmail.andreas.gautestad.matapp.Food;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Tomat extends AppCompatActivity {
+import com.gmail.andreas.gautestad.matapp.R;
+
+public class Mais extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tomat);
+        setContentView(R.layout.activity_mais);
     }
 }
