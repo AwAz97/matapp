@@ -29,17 +29,16 @@ public class FinnOppskrift extends Activity {
 
     private ListView listView;
 
-    private String lv_arr [] = {"Mais", "Tomat", "Potet", "Kjøttdeig", "Eple", "Agurk", "Melk"};
+    private String [] foodArray = {"Mais", "Tomat", "Potet", "Kjøttdeig", "Eple", "Agurk", "Melk"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_finn_oppskrift);
 
         listView = (ListView) findViewById(R.id.searchFood);
 
-        listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, lv_arr));
+        listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, foodArray));
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

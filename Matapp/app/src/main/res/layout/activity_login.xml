@@ -22,11 +22,11 @@
         app:layout_constraintVertical_bias="0.086" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/brukernavn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="E-post"
+        android:hint="Brukernavn"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +36,7 @@
         app:layout_constraintVertical_bias="0.077" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/passord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -48,13 +48,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/brukernavn"
         app:layout_constraintVertical_bias="0.239" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/logginn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="OnLogin"
         android:text="Logg inn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
