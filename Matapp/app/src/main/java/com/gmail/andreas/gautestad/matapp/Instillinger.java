@@ -1,6 +1,7 @@
 package com.gmail.andreas.gautestad.matapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.CheckBox;
@@ -24,56 +25,53 @@ public class Instillinger extends AppCompatActivity {
         nattmodus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {
+                if (isChecked) {
                     Context context = getApplicationContext();
                     SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.nattmodus), Context.MODE_PRIVATE);
                     System.out.println(sharedPref);
                     SharedPreferences.Editor editor = sharedPref.edit();
                     System.out.println(editor);
-                    editor.putString("nattmodus","Sann");
+                    editor.putString("nattmodus", "Sann");
                     editor.apply();
                     System.out.println("Sann");
-                }
-                else{
+                } else {
                     Context context = getApplicationContext();
                     SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.nattmodus), Context.MODE_PRIVATE);
                     System.out.println(sharedPref);
                     SharedPreferences.Editor editor = sharedPref.edit();
                     System.out.println(editor);
-                    editor.putString("nattmodus","falsk");
+                    editor.putString("nattmodus", "falsk");
                     editor.apply();
                     System.out.println("Falsk");
                 }
             }
         });
 
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             Context context = getApplicationContext();
             SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.nattmodus), Context.MODE_PRIVATE);
             String sjekk = sharedPref.getString("nattmodus", null);
 
-            if(Objects.equals(sjekk, "Sann")) {
+            if (Objects.equals(sjekk, "Sann")) {
                 nattmodus.setChecked(true);
                 System.out.println("SATT AN TE SANN");
-            }
-            else{
+            } else {
                 nattmodus.setChecked(false);
             }
         }
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         Context context = getApplicationContext();
         SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.nattmodus), Context.MODE_PRIVATE);
         String sjekk = sharedPref.getString("nattmodus", null);
 
-        if(Objects.equals(sjekk, "Sann")) {
+        if (Objects.equals(sjekk, "Sann")) {
             nattmodus.setChecked(true);
             System.out.println("SATT AN TE SANN");
-        }
-        else{
+        } else {
             nattmodus.setChecked(false);
 
         }

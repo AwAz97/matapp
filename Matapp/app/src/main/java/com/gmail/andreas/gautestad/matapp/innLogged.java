@@ -20,7 +20,7 @@ public class innLogged extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_inn_logged);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class innLogged extends AppCompatActivity {
             setContentView(R.layout.activity_main_dark);
         }
         else{
-            setContentView(R.layout.activity_main);
+            setContentView(R.layout.activity_inn_logged);
         }
 
     }

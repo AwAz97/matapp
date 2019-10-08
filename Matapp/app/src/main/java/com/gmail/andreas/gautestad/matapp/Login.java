@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -50,9 +51,10 @@ public class Login extends AppCompatActivity {
         bruker.setString(brukernavn, passord);
         bruker.execute();
 
-}
+    }
+
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
 
 
@@ -60,10 +62,9 @@ public class Login extends AppCompatActivity {
         SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.nattmodus), Context.MODE_PRIVATE);
         String sjekk = sharedPref.getString("nattmodus", null);
 
-        if(Objects.equals(sjekk, "Sann")) {
+        if (Objects.equals(sjekk, "Sann")) {
             setContentView(R.layout.activity_login_dark);
-        }
-        else{
+        } else {
             setContentView(R.layout.activity_login);
         }
 
@@ -74,86 +75,86 @@ public class Login extends AppCompatActivity {
         startActivity(i1);
     }
 
-    public void nextAct(){
+    public void nextAct() {
         Intent next = new Intent(this, innLogged.class);
         startActivity(next);
     }
 
-   class SjekkBruker extends AsyncTask<String, String, String> {
+    class SjekkBruker extends AsyncTask<String, String, String> {
 
-       String utTxt;
-       public final String Endpoint = "https://web01.usn.no/~216728/api.php/";
+        String utTxt;
+        public final String Endpoint = "https://web01.usn.no/~216728/api.php/";
 
-       public void setString(String brukernavn, String passord) {
-           utTxt = Endpoint + "records/brukere/?include=brukernavn,passord&filter=brukernavn,eq," + brukernavn + "&filter=passord,eq," + passord;
-           //System.out.println("Sjekk link: " + utTxt);
+        public void setString(String brukernavn, String passord) {
+            utTxt = Endpoint + "records/brukere/?include=brukernavn,passord&filter=brukernavn,eq," + brukernavn + "&filter=passord,eq," + passord;
+            //System.out.println("Sjekk link: " + utTxt);
 
-       }
+        }
 
-       @Override
-       protected String doInBackground(String... params) {
-           HttpURLConnection connection = null;
-           StringBuilder response = new StringBuilder();
-           try {
-               //System.out.println("Hei");
-               connection = (HttpURLConnection) new URL(utTxt).openConnection();
-               System.out.println("Hent Bruker: " + utTxt);
-               connection.connect();
+        @Override
+        protected String doInBackground(String... params) {
+            HttpURLConnection connection = null;
+            StringBuilder response = new StringBuilder();
+            try {
+                //System.out.println("Hei");
+                connection = (HttpURLConnection) new URL(utTxt).openConnection();
+                System.out.println("Hent Bruker: " + utTxt);
+                connection.connect();
 
-               int status = connection.getResponseCode();
-               System.out.println("Status kode er: " + status);
+                int status = connection.getResponseCode();
+                System.out.println("Status kode er: " + status);
 
-               if (status == HttpURLConnection.HTTP_OK) {
-                   BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                   String line;
-                   while ((line = reader.readLine()) != null) {
-                       //response.append(reader.readLine())
-                       response.append(line);
-                       System.out.println("Appender til response: " + line);
-                   }
+                if (status == HttpURLConnection.HTTP_OK) {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        //response.append(reader.readLine())
+                        response.append(line);
+                        System.out.println("Appender til response: " + line);
+                    }
 
-               }
-           } catch (MalformedURLException e) {
-               e.printStackTrace();
-           } catch (IOException e) {
-               e.printStackTrace();
-           } catch (Exception e) {
-               e.printStackTrace();
-           } finally {
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
 
-               if (connection != null)
-                   connection.disconnect();
+                if (connection != null)
+                    connection.disconnect();
 
-               System.out.println("Yeet1 : " + response.toString());
-               return response.toString();
-           }
-       }
+                System.out.println("Yeet1 : " + response.toString());
+                return response.toString();
+            }
+        }
 
 
-       @Override
-       protected void onPostExecute(String result) {
-           try {
-               Log.i("Debug result", " " + result);
-               JSONObject bruker = new JSONObject(result);
+        @Override
+        protected void onPostExecute(String result) {
+            try {
+                Log.i("Debug result", " " + result);
+                JSONObject bruker = new JSONObject(result);
 
-               JSONArray brukerArray = bruker.getJSONArray("records");
-               System.out.println("Bruker array: " + brukerArray.length());
+                JSONArray brukerArray = bruker.getJSONArray("records");
+                System.out.println("Bruker array: " + brukerArray.length());
 
-               loginBruker(brukerArray);
+                loginBruker(brukerArray);
 
-           } catch (JSONException e) {
-               Log.e("Ugyldig JSON data", e.getMessage());
-               e.printStackTrace();
-           }
-       }
+            } catch (JSONException e) {
+                Log.e("Ugyldig JSON data", e.getMessage());
+                e.printStackTrace();
+            }
+        }
 
-       public void loginBruker(JSONArray brukere) {
-           if (brukere == null || brukere.length() < 1) {
-               Toast.makeText(Login.this, "Feil brukernavn eller passord", Toast.LENGTH_SHORT).show();
-           } else {
-               Toast.makeText(Login.this, "Du er logget inn", Toast.LENGTH_SHORT).show();
-               nextAct();
-           }
-       }
-   }
+        public void loginBruker(JSONArray brukere) {
+            if (brukere == null || brukere.length() < 1) {
+                Toast.makeText(Login.this, "Feil brukernavn eller passord", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(Login.this, "Du er logget inn", Toast.LENGTH_SHORT).show();
+                nextAct();
+            }
+        }
+    }
 }

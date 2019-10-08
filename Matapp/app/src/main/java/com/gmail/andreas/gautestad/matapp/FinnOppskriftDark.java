@@ -36,7 +36,7 @@ public class FinnOppskriftDark extends AppCompatActivity {
 
         adapter = new ArrayAdapter<String>(
                 FinnOppskriftDark.this,
-                android.R.layout. simple_list_item_1,
+                android.R.layout.simple_list_item_1,
                 arrayFood
         );
 
@@ -44,7 +44,7 @@ public class FinnOppskriftDark extends AppCompatActivity {
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
 
 
@@ -52,10 +52,9 @@ public class FinnOppskriftDark extends AppCompatActivity {
         SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.nattmodus), Context.MODE_PRIVATE);
         String sjekk = sharedPref.getString("nattmodus", null);
 
-        if(Objects.equals(sjekk, "Sann")) {
+        if (Objects.equals(sjekk, "Sann")) {
             setContentView(R.layout.activity_finn_oppskrift_dark);
-        }
-        else{
+        } else {
             setContentView(R.layout.activity_finn_oppskrift);
         }
 

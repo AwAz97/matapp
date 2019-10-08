@@ -20,7 +20,7 @@ public class FinnOppskrift extends Activity {
 
     private ListView listView;
 
-    private String [] foodArray = {"Mais", "Tomat", "Potet", "Kjøttdeig", "Eple", "Agurk", "Melk"};
+    private String[] foodArray = {"Mais", "Tomat", "Potet", "Kjøttdeig", "Eple", "Agurk", "Melk"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

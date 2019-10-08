@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.112" />
 
     <EditText
-        android:id="@+id/bruker"
+        android:id="@+id/sNavn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -34,7 +34,7 @@
         app:layout_constraintVertical_bias="0.098" />
 
     <EditText
-        android:id="@+id/epost"
+        android:id="@+id/sMail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -47,7 +47,7 @@
         app:layout_constraintVertical_bias="0.263" />
 
     <EditText
-        android:id="@+id/passord"
+        android:id="@+id/sPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -59,29 +59,19 @@
         app:layout_constraintTop_toBottomOf="@+id/signup"
         app:layout_constraintVertical_bias="0.436" />
 
+
     <Button
-        android:id="@+id/registrerbtn"
+        android:id="@+id/sRegistrer"
         android:layout_width="229dp"
         android:layout_height="59dp"
+        android:onClick="RegBruker"
         android:text="Create Account"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.456"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passord"
-        app:layout_constraintVertical_bias="0.166" />
-
-    <Button
-        android:id="@+id/homebtn"
-        android:layout_width="118dp"
-        android:layout_height="44dp"
-        android:onClick="goToMainActivity"
-        android:text="Home"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.31"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registrerbtn"
-        app:layout_constraintVertical_bias="0.291" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.755" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
