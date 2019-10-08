@@ -65,22 +65,24 @@ public class Login extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+        SharedPreferences blackings = getSharedPreferences("settings", MODE_PRIVATE);
+        boolean darkstate = blackings.getBoolean("dark_mode", false);
+        if (darkstate) {
+            login.setTextColor(Color.parseColor("#FFFFFF"));
+            brukernavn.setTextColor(Color.parseColor("#FFFFFF"));
+            brukernavn.setHintTextColor(Color.parseColor("#FFFFFF"));
+            passord.setTextColor(Color.parseColor("#FFFFFF"));
+            passord.setHintTextColor(Color.parseColor("#FFFFFF"));
+            textView5.setTextColor(Color.parseColor("#FFFFFF"));
+            ConstraintLayout currentLayout = (ConstraintLayout) findViewById(R.id.innlogg);
+            currentLayout.setBackgroundColor(Color.parseColor("#2B2626"));
+        }
+        else {
+            ConstraintLayout currentLayout = (ConstraintLayout) findViewById(R.id.innlogg);
+            currentLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        }
 
-            SharedPreferences blackings = getSharedPreferences("settings", MODE_PRIVATE);
-            boolean darkstate = blackings.getBoolean("dark_mode", false);
-            if (darkstate) {
-                login.setTextColor(Color.parseColor("#FFFFFF"));
-                brukernavn.setTextColor(Color.parseColor("#FFFFFF"));
-                brukernavn.setHintTextColor(Color.parseColor("#FFFFFF"));
-                passord.setTextColor(Color.parseColor("#FFFFFF"));
-                passord.setHintTextColor(Color.parseColor("#FFFFFF"));
-                textView5.setTextColor(Color.parseColor("#FFFFFF"));
-                ConstraintLayout currentLayout = (ConstraintLayout) findViewById(R.id.innlogg);
-                currentLayout.setBackgroundColor(Color.parseColor("#2B2626"));
-            } else {
-                ConstraintLayout currentLayout = (ConstraintLayout) findViewById(R.id.innlogg);
-                currentLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
-            }
+
     }
 
     public void goToRegistrer(View view) {

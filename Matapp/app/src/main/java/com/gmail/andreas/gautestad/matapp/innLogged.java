@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.Objects;
 
@@ -28,6 +29,7 @@ public class innLogged extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
+
         SharedPreferences blackings = getSharedPreferences("settings", MODE_PRIVATE);
         boolean darkstate = blackings.getBoolean("dark_mode", false);
         if (darkstate) {
