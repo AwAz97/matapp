@@ -1,10 +1,12 @@
 package com.gmail.andreas.gautestad.matapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,26 +25,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
+        SharedPreferences settings = getApplicationContext().getSharedPreferences("settings", MODE_PRIVATE);
     }
 
     @Override
     public void onResume(){
         super.onResume();
-
-
-        Context context = getApplicationContext();
-        SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.nattmodus), Context.MODE_PRIVATE);
-        String sjekk = sharedPref.getString("nattmodus", null);
-
-        if(Objects.equals(sjekk, "Sann")) {
-            setContentView(R.layout.activity_main_dark);
+        SharedPreferences blackings = getSharedPreferences("settings", MODE_PRIVATE);
+        boolean darkstate = blackings.getBoolean("dark_mode", false);
+        if (darkstate) {
+            ConstraintLayout currentLayout = (ConstraintLayout) findViewById(R.id.main);
+            currentLayout.setBackgroundColor(Color.parseColor("#2B2626"));
         }
-        else{
-            setContentView(R.layout.activity_main);
+        else {
+            ConstraintLayout currentLayout = (ConstraintLayout) findViewById(R.id.main);
+            currentLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
         }
+
+
 
     }
 
