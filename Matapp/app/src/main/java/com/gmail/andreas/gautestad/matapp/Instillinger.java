@@ -10,7 +10,6 @@ import android.widget.Switch;
 
 
 public class Instillinger extends AppCompatActivity {
-
     Switch darkmode;
 
     @Override
@@ -18,6 +17,7 @@ public class Instillinger extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instillinger);
         darkmode = (Switch) findViewById(R.id.darkmode);
+
 
     }
 
@@ -28,6 +28,7 @@ public class Instillinger extends AppCompatActivity {
         boolean darkstate = blackings.getBoolean("dark_mode", false);
         if (!darkstate) {
             darkmode.setChecked(false);
+            darkmode.setTextColor(Color.parseColor("#FFFFFF"));
         }
         if (darkstate) {
             ConstraintLayout currentLayout = (ConstraintLayout) findViewById(R.id.instillinger);

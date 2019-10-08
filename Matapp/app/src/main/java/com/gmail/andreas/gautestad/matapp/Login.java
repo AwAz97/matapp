@@ -53,7 +53,7 @@ public class Login extends AppCompatActivity {
         bruker.execute();
 
     }
-
+    //Nattmodus
     @Override
     public void onResume() {
         super.onResume();
