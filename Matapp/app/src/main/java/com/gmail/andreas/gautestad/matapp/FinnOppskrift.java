@@ -1,7 +1,6 @@
 package com.gmail.andreas.gautestad.matapp;
 
-import android.app.Activity;
-import android.content.Context;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -11,10 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import com.gmail.andreas.gautestad.matapp.Food.Agurk;
 import com.gmail.andreas.gautestad.matapp.Food.Eple;
 import com.gmail.andreas.gautestad.matapp.Food.Kjottdeig;
@@ -22,8 +18,6 @@ import com.gmail.andreas.gautestad.matapp.Food.Mais;
 import com.gmail.andreas.gautestad.matapp.Food.Melk;
 import com.gmail.andreas.gautestad.matapp.Food.Potet;
 import com.gmail.andreas.gautestad.matapp.Food.Tomat;
-
-import java.util.Objects;
 
 /**
  * <p>Finnoppskrift klasse, for å finne ingrediensene</p>
