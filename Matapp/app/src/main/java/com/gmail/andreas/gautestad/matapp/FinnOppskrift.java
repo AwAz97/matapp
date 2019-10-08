@@ -8,6 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.gmail.andreas.gautestad.matapp.Food.Agurk;
 import com.gmail.andreas.gautestad.matapp.Food.Eple;
 import com.gmail.andreas.gautestad.matapp.Food.Kjottdeig;
@@ -16,22 +18,22 @@ import com.gmail.andreas.gautestad.matapp.Food.Melk;
 import com.gmail.andreas.gautestad.matapp.Food.Potet;
 import com.gmail.andreas.gautestad.matapp.Food.Tomat;
 
-public class FinnOppskrift extends Activity {
+public class FinnOppskrift extends AppCompatActivity {
 
-    private ListView listView;
+    private ListView matListen;
 
-    private String [] foodArray = {"Mais", "Tomat", "Potet", "Kjøttdeig", "Eple", "Agurk", "Melk"};
+    private String [] matArray = {"Mais", "Tomat", "Potet", "Kjøttdeig", "Eple", "Agurk", "Melk"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finn_oppskrift);
 
-        listView = (ListView) findViewById(R.id.searchFood);
+        matListen = (ListView) findViewById(R.id.searchFood);
 
-        listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, foodArray));
+        matListen.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, matArray));
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        matListen.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 if (position == 0) {
