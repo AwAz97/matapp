@@ -14,9 +14,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -66,8 +68,7 @@ public class Login extends AppCompatActivity {
             textView5.setTextColor(Color.parseColor("#FFFFFF"));
             ConstraintLayout currentLayout = (ConstraintLayout) findViewById(R.id.innlogg);
             currentLayout.setBackgroundColor(Color.parseColor("#2B2626"));
-        }
-        else {
+        } else {
             ConstraintLayout currentLayout = (ConstraintLayout) findViewById(R.id.innlogg);
             currentLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
         }
@@ -85,8 +86,9 @@ public class Login extends AppCompatActivity {
         startActivity(next);
     }
 
+    //Henter brukernavn og passord som ble skrevet av bruker. Søker etter det som ble skrevet i databasen. Lager resultatet som jsonObject.
+    //Hvis det er tomt finnes ikke kontoen til brukeren og må prøve på nytt. Hvis det er noe i resultatet blir bruker logget inn.
     class SjekkBruker extends AsyncTask<String, String, String> {
-        //Hente informasjon fra databasen og sjekke om brukernavn og passord passer sammen
         String utTxt;
         public final String Endpoint = "https://web01.usn.no/~216728/api.php/";
 
@@ -95,6 +97,7 @@ public class Login extends AppCompatActivity {
 
 
         }
+
         //For å connecte til databasen
         @Override
         protected String doInBackground(String... params) {
@@ -151,6 +154,7 @@ public class Login extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+
         //Ta bruker videre eller stoppe bruker
         public void loginBruker(JSONArray brukere) {
             if (brukere == null || brukere.length() < 1) {
