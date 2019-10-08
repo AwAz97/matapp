@@ -39,14 +39,14 @@ public class Registrer extends AppCompatActivity {
 
         Bruker bruker = new Bruker(navn.getText().toString(), pass.getText().toString(), mail.getText().toString());
         RegBruker regBruker = new RegBruker(bruker);
-        System.out.println("Funka");
+        System.out.println("Funka1");
         regBruker.execute();
     }
 
     class RegBruker extends AsyncTask<String, String, String> {
 
         String utTxt;
-        public final String Endpoint = "https://web01.usn.no/~216728/api.php/";
+        public final String Endpoint = "https://web01.usn.no/~216728/api.php";
 
         private Bruker bruker;
 
@@ -57,7 +57,7 @@ public class Registrer extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            String insert_URI = "https://web01.usn.no/~216728/api.php/" + "/brukere";
+            String insert_URI = "https://web01.usn.no/~216728/api.php/" + "records/brukere";
             HttpURLConnection connection = null;
             try {
                 URL insertURL = new URL(insert_URI);
@@ -67,39 +67,40 @@ public class Registrer extends AppCompatActivity {
                 connection.setChunkedStreamingMode(0);
                 connection.setRequestMethod("POST");
                 connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-                System.out.println("Funka");
+                System.out.println("Funka2");
                 connection.connect();
-                System.out.println("Funka");
+                System.out.println("Funka3");
                 JSONObject jsonBruker = bruker.toJSONObject();
                 OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
                 out.write(jsonBruker.toString());
                 out.close();
-                System.out.println("Funka");
                 int status = connection.getResponseCode();
+                System.out.println("Funka4" + status);
                 if (status == HttpURLConnection.HTTP_OK) {
                     BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"));
                     StringBuilder response = new StringBuilder();
                     while (reader.readLine() != null)
                         response = response.append(reader.readLine());
                     reader.close();
-                    if (response.toString().equals(PHP_CRUD_API_HTTP_OK)) return ("11");
-                    else return ("11");
+                    System.out.println("Responsen er: " + response.toString());
+                    if (response.toString().equals(PHP_CRUD_API_HTTP_OK)) return ("ok");
+                    else return ("not ok1");
                 } else {
-                    return ("11");
+                    return ("not ok2");
                 }
 
             } catch (ProtocolException e) {
             Log.e("Protocol error", e.getMessage() + "  ");
             e.printStackTrace();
-            return ("11");
+            return ("not ok3");
         } catch(MalformedURLException e){
             Log.e("MalfromedURL error", e.getMessage());
             e.printStackTrace();
-            return ("11");
+            return ("not ok4");
         } catch(IOException e){
             Log.e("IOE error", e.getMessage());
             e.printStackTrace();
-            return ("1l");
+            return ("not ok5");
             } finally {
                 if (connection != null)
                 connection.disconnect();
@@ -108,8 +109,9 @@ public class Registrer extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
+            System.out.println(result);
             if (result.equals("ok")) {
-                System.out.println("Funka");
+                System.out.println("Funka5");
             } else {
                 System.out.println("Feil");
             }

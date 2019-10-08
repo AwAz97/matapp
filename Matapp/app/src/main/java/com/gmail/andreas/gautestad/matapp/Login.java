@@ -35,19 +35,19 @@ import java.net.URLEncoder;
 import java.util.Objects;
 
 public class Login extends AppCompatActivity {
-TextView login;
-EditText brukernavn;
-EditText passord;
-TextView textView5;
+    TextView login;
+    EditText brukernavn;
+    EditText passord;
+    TextView textView5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        login=(TextView)findViewById(R.id.Login);
-        brukernavn=(EditText)findViewById(R.id.brukernavn);
-        passord=(EditText)findViewById(R.id.passord);
-        textView5=(TextView)findViewById(R.id.textView5);
+        login = (TextView) findViewById(R.id.Login);
+        brukernavn = (EditText) findViewById(R.id.brukernavn);
+        passord = (EditText) findViewById(R.id.passord);
+        textView5 = (TextView) findViewById(R.id.textView5);
     }
 
     public void OnLogin(View view) {
@@ -66,34 +66,21 @@ TextView textView5;
     public void onResume() {
         super.onResume();
 
-
-        Context context = getApplicationContext();
-        SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.nattmodus), Context.MODE_PRIVATE);
-        String sjekk = sharedPref.getString("nattmodus", null);
-
-        if (Objects.equals(sjekk, "Sann")) {
-            setContentView(R.layout.activity_login_dark);
-        } else {
-            setContentView(R.layout.activity_login);
-            
-        SharedPreferences blackings = getSharedPreferences("settings", MODE_PRIVATE);
-        boolean darkstate = blackings.getBoolean("dark_mode", false);
-        if (darkstate) {
-            login.setTextColor(Color.parseColor("#FFFFFF"));
-            brukernavn.setTextColor(Color.parseColor("#FFFFFF"));
-            brukernavn.setHintTextColor(Color.parseColor("#FFFFFF"));
-            passord.setTextColor(Color.parseColor("#FFFFFF"));
-            passord.setHintTextColor(Color.parseColor("#FFFFFF"));
-            textView5.setTextColor(Color.parseColor("#FFFFFF"));
-            ConstraintLayout currentLayout = (ConstraintLayout) findViewById(R.id.innlogg);
-            currentLayout.setBackgroundColor(Color.parseColor("#2B2626"));
-        }
-        else {
-            ConstraintLayout currentLayout = (ConstraintLayout) findViewById(R.id.innlogg);
-            currentLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
-        }
-
-
+            SharedPreferences blackings = getSharedPreferences("settings", MODE_PRIVATE);
+            boolean darkstate = blackings.getBoolean("dark_mode", false);
+            if (darkstate) {
+                login.setTextColor(Color.parseColor("#FFFFFF"));
+                brukernavn.setTextColor(Color.parseColor("#FFFFFF"));
+                brukernavn.setHintTextColor(Color.parseColor("#FFFFFF"));
+                passord.setTextColor(Color.parseColor("#FFFFFF"));
+                passord.setHintTextColor(Color.parseColor("#FFFFFF"));
+                textView5.setTextColor(Color.parseColor("#FFFFFF"));
+                ConstraintLayout currentLayout = (ConstraintLayout) findViewById(R.id.innlogg);
+                currentLayout.setBackgroundColor(Color.parseColor("#2B2626"));
+            } else {
+                ConstraintLayout currentLayout = (ConstraintLayout) findViewById(R.id.innlogg);
+                currentLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            }
     }
 
     public void goToRegistrer(View view) {
