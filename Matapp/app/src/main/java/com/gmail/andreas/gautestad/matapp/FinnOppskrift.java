@@ -24,11 +24,15 @@ import com.gmail.andreas.gautestad.matapp.Food.Tomat;
 
 import java.util.Objects;
 
+/**
+ * <p>Finnoppskrift klasse, for å finne ingrediensene</p>
+ * @author Terje bakken, Andreas Gautestad, Nick Becker
+ * */
+
 public class FinnOppskrift extends AppCompatActivity {
 
-    private String[] foodArray = {"Mais", "Tomat", "Potet", "Kjøttdeig", "Eple", "Agurk", "Melk"};
+    //Setter inn array for list.
     private ListView matListen;
-
     private String [] matArray = {"Mais", "Tomat", "Potet", "Kjøttdeig", "Eple", "Agurk", "Melk"};
 
     @Override
@@ -37,11 +41,12 @@ public class FinnOppskrift extends AppCompatActivity {
         setContentView(R.layout.activity_finn_oppskrift);
 
 
-
+        //Henter id fra activity_finn_oppskrift
         matListen = (ListView) findViewById(R.id.searchFood);
 
         matListen.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, matArray));
 
+        //Item til hvilken posisjon. Går til ny aktivitet
         matListen.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
