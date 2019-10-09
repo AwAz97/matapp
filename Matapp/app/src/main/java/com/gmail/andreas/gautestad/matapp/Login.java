@@ -65,17 +65,6 @@ TextView textView5;
     @Override
     public void onResume() {
         super.onResume();
-
-
-        Context context = getApplicationContext();
-        SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.nattmodus), Context.MODE_PRIVATE);
-        String sjekk = sharedPref.getString("nattmodus", null);
-
-        if (Objects.equals(sjekk, "Sann")) {
-            setContentView(R.layout.activity_login_dark);
-        } else {
-            setContentView(R.layout.activity_login);
-            
         SharedPreferences blackings = getSharedPreferences("settings", MODE_PRIVATE);
         boolean darkstate = blackings.getBoolean("dark_mode", false);
         if (darkstate) {
