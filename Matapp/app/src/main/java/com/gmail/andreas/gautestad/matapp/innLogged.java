@@ -33,10 +33,10 @@ public class innLogged extends AppCompatActivity {
         String sjekk = sharedPref.getString("nattmodus", null);
 
         if(Objects.equals(sjekk, "Sann")) {
-            setContentView(R.layout.activity_main_dark);
+            setContentView(R.layout.activity_inn_logged_dark);
         }
         else{
-            setContentView(R.layout.activity_main);
+            setContentView(R.layout.activity_inn_logged);
         }
 
     }

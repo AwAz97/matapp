@@ -1,7 +1,9 @@
 package com.gmail.andreas.gautestad.matapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,6 +20,8 @@ import com.gmail.andreas.gautestad.matapp.Food.Melk;
 import com.gmail.andreas.gautestad.matapp.Food.Potet;
 import com.gmail.andreas.gautestad.matapp.Food.Tomat;
 
+import java.util.Objects;
+
 public class FinnOppskrift extends AppCompatActivity {
 
     private ListView matListen;
@@ -28,6 +32,17 @@ public class FinnOppskrift extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finn_oppskrift);
+
+        Context context = getApplicationContext();
+        SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.nattmodus), Context.MODE_PRIVATE);
+        String sjekk = sharedPref.getString("nattmodus", null);
+
+        if(Objects.equals(sjekk, "Sann")) {
+            setContentView(R.layout.activity_finn_oppskrift_dark);
+        }
+        else{
+            setContentView(R.layout.activity_finn_oppskrift);
+        }
 
         matListen = (ListView) findViewById(R.id.searchFood);
 
