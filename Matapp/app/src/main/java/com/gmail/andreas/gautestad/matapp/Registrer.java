@@ -39,8 +39,14 @@ public class Registrer extends AppCompatActivity {
 
         Bruker bruker = new Bruker(navn.getText().toString(), pass.getText().toString(), mail.getText().toString());
         RegBruker regBruker = new RegBruker(bruker);
-        System.out.println("Funka1");
         regBruker.execute();
+        Intent ul = new Intent(this, innLogged.class);
+        startActivity(ul);
+    }
+
+    public void nextAct() {
+        Intent next = new Intent(this, innLogged.class);
+        startActivity(next);
     }
 
     class RegBruker extends AsyncTask<String, String, String> {
@@ -67,15 +73,12 @@ public class Registrer extends AppCompatActivity {
                 connection.setChunkedStreamingMode(0);
                 connection.setRequestMethod("POST");
                 connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-                System.out.println("Funka2");
                 connection.connect();
-                System.out.println("Funka3");
                 JSONObject jsonBruker = bruker.toJSONObject();
                 OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
                 out.write(jsonBruker.toString());
                 out.close();
                 int status = connection.getResponseCode();
-                System.out.println("Funka4" + status);
                 if (status == HttpURLConnection.HTTP_OK) {
                     BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"));
                     StringBuilder response = new StringBuilder();
@@ -90,20 +93,20 @@ public class Registrer extends AppCompatActivity {
                 }
 
             } catch (ProtocolException e) {
-            Log.e("Protocol error", e.getMessage() + "  ");
-            e.printStackTrace();
-            return ("not ok3");
-        } catch(MalformedURLException e){
-            Log.e("MalfromedURL error", e.getMessage());
-            e.printStackTrace();
-            return ("not ok4");
-        } catch(IOException e){
-            Log.e("IOE error", e.getMessage());
-            e.printStackTrace();
-            return ("not ok5");
+                Log.e("Protocol error", e.getMessage() + "  ");
+                e.printStackTrace();
+                return ("not ok3");
+            } catch (MalformedURLException e) {
+                Log.e("MalfromedURL error", e.getMessage());
+                e.printStackTrace();
+                return ("not ok4");
+            } catch (IOException e) {
+                Log.e("IOE error", e.getMessage());
+                e.printStackTrace();
+                return ("not ok5");
             } finally {
                 if (connection != null)
-                connection.disconnect();
+                    connection.disconnect();
             }
         }
 
@@ -116,7 +119,6 @@ public class Registrer extends AppCompatActivity {
                 System.out.println("Feil");
             }
         }
-
     }
 
 
@@ -125,10 +127,5 @@ public class Registrer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrer);
 
-    }
-
-    public void goToMainActivity(View view) {
-        Intent i2 = new Intent(this, MainActivity.class);
-        startActivity(i2);
     }
 }

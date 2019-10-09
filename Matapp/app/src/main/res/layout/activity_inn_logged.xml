@@ -55,7 +55,7 @@
         android:layout_width="133dp"
         android:layout_height="69dp"
         android:layout_marginTop="50dp"
-        android:onClick="LogUt"
+        android:onClick="goToMainActivity"
         android:text="Log UT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

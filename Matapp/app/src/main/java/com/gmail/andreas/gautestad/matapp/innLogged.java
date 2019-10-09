@@ -51,7 +51,10 @@ public class innLogged extends AppCompatActivity {
         Intent i3 = new Intent(this, Favoritter.class);
         startActivity(i3);
     }
-
+    public void goToMainActivity(View view) {
+        Intent i5 = new Intent(this, MainActivity.class);
+        startActivity(i5);
+    }
     public void goToInstillinger(View view) {
         Intent i4 = new Intent(this, Instillinger.class);
         startActivity(i4);
