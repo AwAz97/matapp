@@ -5,7 +5,7 @@
     android:id="@+id/instillinger"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EEE9E7"
+    android:background="#DDDADA"
     tools:context=".Instillinger">
 
     <TextView
@@ -22,15 +22,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.086" />
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="215dp"
-        android:layout_height="111dp"
+    <Switch
+        android:id="@+id/darkmode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:checked="true"
+        android:onClick="darkmode"
         android:text="Nattmodus"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="#087CAC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.211" />
+        app:layout_constraintTop_toBottomOf="@+id/login" />
 </androidx.constraintlayout.widget.ConstraintLayout>
