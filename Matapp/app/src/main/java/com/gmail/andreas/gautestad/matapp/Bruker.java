@@ -10,34 +10,34 @@ public class Bruker {
     static final String KOL_Email = "email";
     static final String KOL_Passord = "passord";
 
-    public Bruker(String brukernavn, String passord, String email){
+    public Bruker(String brukernavn, String passord, String email) {
         this.brukernavn = brukernavn;
         this.passord = passord;
         this.email = email;
 
     }
 
-    public Bruker(JSONObject bruker){
+    public Bruker(JSONObject bruker) {
         this.brukernavn = bruker.optString("brukernavn");
         this.email = bruker.optString("email");
         this.passord = bruker.optString("passord");
 
     }
 
-    public JSONObject toJSONObject(){
+    public JSONObject toJSONObject() {
         JSONObject bruker = new JSONObject();
         try {
-            bruker.put(KOL_Navn,    this.brukernavn);
-            bruker.put(KOL_Email,   this.email);
+            bruker.put(KOL_Navn, this.brukernavn);
+            bruker.put(KOL_Email, this.email);
             bruker.put(KOL_Passord, this.passord);
 
-        } catch (JSONException e){
+        } catch (JSONException e) {
             return null;
         }
         return bruker;
     }
 
-    public String toString(){
+    public String toString() {
         return "Brukernavn : " + this.brukernavn + ", Email: " + this.email + ", Passord: " + this.passord;
     }
 }

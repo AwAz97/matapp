@@ -26,6 +26,7 @@ import java.util.Objects;
 
 public class FinnOppskrift extends AppCompatActivity {
 
+    private String[] foodArray = {"Mais", "Tomat", "Potet", "Kjøttdeig", "Eple", "Agurk", "Melk"};
     private ListView matListen;
 
     private String [] matArray = {"Mais", "Tomat", "Potet", "Kjøttdeig", "Eple", "Agurk", "Melk"};
