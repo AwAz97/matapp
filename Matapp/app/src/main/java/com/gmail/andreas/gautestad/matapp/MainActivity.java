@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         SharedPreferences settings = getApplicationContext().getSharedPreferences("settings", MODE_PRIVATE);
     }
-
+    //Endrer layout basert på dark_state sin verdi.
     @Override
     public void onResume(){
         super.onResume();

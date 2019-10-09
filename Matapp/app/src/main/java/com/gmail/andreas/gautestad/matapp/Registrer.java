@@ -1,11 +1,16 @@
 package com.gmail.andreas.gautestad.matapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import org.json.JSONObject;
 import java.io.BufferedReader;
@@ -19,6 +24,8 @@ import java.net.URL;
 
 
 public class Registrer extends AppCompatActivity {
+    TextView signup;
+    EditText sNavn, sMail,sPass;
 
     static final String PHP_CRUD_API_HTTP_OK = "1";
 
@@ -117,6 +124,32 @@ public class Registrer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrer);
+        signup = (TextView)findViewById(R.id.signup);
+        sNavn = (EditText) findViewById(R.id.sNavn);
+        sMail = (EditText) findViewById(R.id.sMail);
+        sPass = (EditText) findViewById(R.id.sPass);
+    }
+    //Endrer layout basert på dark_state sin verdi.
+    @Override
+    public void onResume(){
+        super.onResume();
 
+        SharedPreferences blackings = getSharedPreferences("settings", MODE_PRIVATE);
+        boolean darkstate = blackings.getBoolean("dark_mode", false);
+        if (darkstate) {
+            signup.setTextColor(Color.parseColor("#FFFFFF"));
+            sNavn.setTextColor(Color.parseColor("#FFFFFF"));
+            sMail.setTextColor(Color.parseColor("#FFFFFF"));
+            sPass.setTextColor(Color.parseColor("#FFFFFF"));
+            sNavn.setHintTextColor(Color.parseColor("#FFFFFF"));
+            sMail.setHintTextColor(Color.parseColor("#FFFFFF"));
+            sPass.setHintTextColor(Color.parseColor("#FFFFFF"));
+            ConstraintLayout currentLayout = (ConstraintLayout) findViewById(R.id.registrering);
+            currentLayout.setBackgroundColor(Color.parseColor("#2B2626"));
+        }
+        else {
+            ConstraintLayout currentLayout = (ConstraintLayout) findViewById(R.id.registrering);
+            currentLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        }
     }
 }

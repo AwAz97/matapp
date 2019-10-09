@@ -20,7 +20,7 @@ public class innLogged extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inn_logged);
     }
-
+    //Endrer layout basert på dark_state sin verdi.
     @Override
     public void onResume(){
         super.onResume();

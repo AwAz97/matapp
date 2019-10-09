@@ -89,7 +89,7 @@ public class FinnOppskrift extends AppCompatActivity {
             }
         });
     }
-
+    //Endrer layout basert på dark_state sin verdi.
     @Override
     public void onResume(){
         super.onResume();

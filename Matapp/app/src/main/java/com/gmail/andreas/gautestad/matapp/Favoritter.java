@@ -16,7 +16,7 @@ public class Favoritter extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favoritter);
     }
-
+    //Endrer layout basert på dark_state sin verdi.
     @Override
     public void onResume() {
         super.onResume();

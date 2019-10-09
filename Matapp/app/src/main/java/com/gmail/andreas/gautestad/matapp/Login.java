@@ -51,7 +51,7 @@ public class Login extends AppCompatActivity {
         bruker.execute();
 
     }
-
+    //Endrer layout basert på dark_state sin verdi.
     @Override
     public void onResume() {
         super.onResume();

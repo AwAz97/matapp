@@ -12,6 +12,7 @@ import android.widget.Switch;
 public class Instillinger extends AppCompatActivity {
     Switch darkmode;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +21,7 @@ public class Instillinger extends AppCompatActivity {
 
 
     }
-
+    //Endrer layout basert på dark_state sin verdi.
     @Override
     public void onResume() {
         super.onResume();
@@ -41,7 +42,7 @@ public class Instillinger extends AppCompatActivity {
 
     }
 
-
+    //Lagrer dark_state i SharedReferences for å huske om switchen er av eller på og endrer andre sider sin bakgrunssfarge basert på dark_state sin verdi.
     public void darkmode(View view) {
         if (darkmode.isChecked()) {
             ConstraintLayout currentLayout = (ConstraintLayout) findViewById(R.id.instillinger);
