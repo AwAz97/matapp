@@ -3,12 +3,11 @@ package com.gmail.andreas.gautestad.matapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.content.Context;
+
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import java.util.Objects;
 
 public class Favoritter extends AppCompatActivity {
 

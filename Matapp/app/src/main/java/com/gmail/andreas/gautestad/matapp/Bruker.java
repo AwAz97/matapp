@@ -3,6 +3,7 @@ package com.gmail.andreas.gautestad.matapp;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+//Klasse for å opprette objekter utifra API respons
 public class Bruker {
     String brukernavn, passord, email;
     static final String TABELL_NAVN = "Bruker";
@@ -17,12 +18,6 @@ public class Bruker {
 
     }
 
-    public Bruker(JSONObject bruker) {
-        this.brukernavn = bruker.optString("brukernavn");
-        this.email = bruker.optString("email");
-        this.passord = bruker.optString("passord");
-
-    }
 
     public JSONObject toJSONObject() {
         JSONObject bruker = new JSONObject();

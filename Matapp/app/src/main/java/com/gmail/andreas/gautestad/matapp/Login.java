@@ -3,36 +3,26 @@ package com.gmail.andreas.gautestad.matapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.app.AlertDialog;
-import android.content.Context;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.util.Objects;
 
 public class Login extends AppCompatActivity {
     TextView login;
@@ -96,22 +86,21 @@ public class Login extends AppCompatActivity {
     }
 
     class SjekkBruker extends AsyncTask<String, String, String> {
-
+        //Hente informasjon fra databasen og sjekke om brukernavn og passord passer sammen
         String utTxt;
         public final String Endpoint = "https://web01.usn.no/~216728/api.php/";
 
         public void setString(String brukernavn, String passord) {
             utTxt = Endpoint + "records/brukere/?include=brukernavn,passord&filter=brukernavn,eq," + brukernavn + "&filter=passord,eq," + passord;
-            //System.out.println("Sjekk link: " + utTxt);
+
 
         }
-
+        //For å connecte til databasen
         @Override
         protected String doInBackground(String... params) {
             HttpURLConnection connection = null;
             StringBuilder response = new StringBuilder();
             try {
-                //System.out.println("Hei");
                 connection = (HttpURLConnection) new URL(utTxt).openConnection();
                 System.out.println("Hent Bruker: " + utTxt);
                 connection.connect();
@@ -162,7 +151,7 @@ public class Login extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-
+        //Ta bruker videre eller stoppe bruker
         public void loginBruker(JSONArray brukere) {
             if (brukere == null || brukere.length() < 1) {
                 Toast.makeText(Login.this, "Feil brukernavn eller passord", Toast.LENGTH_SHORT).show();

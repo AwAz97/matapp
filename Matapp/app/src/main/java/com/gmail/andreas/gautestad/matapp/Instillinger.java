@@ -1,19 +1,12 @@
 package com.gmail.andreas.gautestad.matapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import androidx.constraintlayout.widget.ConstraintLayout;
-
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.view.View;
-import android.widget.CheckBox;
 import android.os.Bundle;
-import android.widget.CompoundButton;
 import android.widget.Switch;
-
-import java.util.Objects;
 
 
 public class Instillinger extends AppCompatActivity {
