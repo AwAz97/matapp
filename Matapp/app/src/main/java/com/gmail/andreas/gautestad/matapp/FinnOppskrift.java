@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -88,5 +89,21 @@ public class FinnOppskrift extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        SharedPreferences blackings = getSharedPreferences("settings", MODE_PRIVATE);
+        boolean darkstate = blackings.getBoolean("dark_mode", false);
+        if (darkstate) {
+            LinearLayout currentLayout = (LinearLayout) findViewById(R.id.finnOppskrift);
+            currentLayout.setBackgroundColor(Color.parseColor("#2B2626"));
+        }
+        else {
+            LinearLayout currentLayout = (LinearLayout) findViewById(R.id.finnOppskrift);
+            currentLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        }
     }
 }

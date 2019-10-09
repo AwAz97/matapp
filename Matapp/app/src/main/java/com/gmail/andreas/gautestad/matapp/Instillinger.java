@@ -18,7 +18,7 @@ import java.util.Objects;
 
 public class Instillinger extends AppCompatActivity {
 
-    /*Switch darkmode;
+    Switch darkmode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,5 +64,5 @@ public class Instillinger extends AppCompatActivity {
             editor.putBoolean("dark_mode", false);
             editor.commit();
         }
-    }*/
+    }
 }
