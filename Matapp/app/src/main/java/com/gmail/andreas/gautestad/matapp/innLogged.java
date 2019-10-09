@@ -1,10 +1,12 @@
 package com.gmail.andreas.gautestad.matapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,10 +28,16 @@ public class innLogged extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
-
-
-
-
+        SharedPreferences blackings = getSharedPreferences("settings", MODE_PRIVATE);
+        boolean darkstate = blackings.getBoolean("dark_mode", false);
+        if (darkstate) {
+            ConstraintLayout currentLayout = (ConstraintLayout) findViewById(R.id.innlogget);
+            currentLayout.setBackgroundColor(Color.parseColor("#2B2626"));
+        }
+        else {
+            ConstraintLayout currentLayout = (ConstraintLayout) findViewById(R.id.innlogget);
+            currentLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        }
     }
 
     public void goToFinnOppskrift(View view) {
