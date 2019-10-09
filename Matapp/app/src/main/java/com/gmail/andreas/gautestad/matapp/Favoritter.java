@@ -17,20 +17,9 @@ public class Favoritter extends AppCompatActivity {
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
 
-
-        Context context = getApplicationContext();
-        SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.nattmodus), Context.MODE_PRIVATE);
-        String sjekk = sharedPref.getString("nattmodus", null);
-
-        if(Objects.equals(sjekk, "Sann")) {
-            setContentView(R.layout.activity_favoritter_dark);
-        }
-        else{
-            setContentView(R.layout.activity_favoritter);
-        }
 
     }
 }

@@ -22,22 +22,4 @@ public class Registrer extends AppCompatActivity {
         Intent i2 = new Intent(this, MainActivity.class);
         startActivity(i2);
     }
-
-    @Override
-    public void onResume(){
-        super.onResume();
-
-
-        Context context = getApplicationContext();
-        SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.nattmodus), Context.MODE_PRIVATE);
-        String sjekk = sharedPref.getString("nattmodus", null);
-
-        if(Objects.equals(sjekk, "Sann")) {
-            setContentView(R.layout.activity_register_dark);
-        }
-        else{
-            setContentView(R.layout.activity_registrer);
-        }
-
-    }
 }

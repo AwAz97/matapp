@@ -33,16 +33,7 @@ public class FinnOppskrift extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finn_oppskrift);
 
-        Context context = getApplicationContext();
-        SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.nattmodus), Context.MODE_PRIVATE);
-        String sjekk = sharedPref.getString("nattmodus", null);
 
-        if(Objects.equals(sjekk, "Sann")) {
-            setContentView(R.layout.activity_finn_oppskrift_dark);
-        }
-        else{
-            setContentView(R.layout.activity_finn_oppskrift);
-        }
 
         matListen = (ListView) findViewById(R.id.searchFood);
 
