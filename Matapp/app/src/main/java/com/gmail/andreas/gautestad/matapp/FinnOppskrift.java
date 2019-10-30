@@ -11,13 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
-import com.gmail.andreas.gautestad.matapp.Food.Agurk;
-import com.gmail.andreas.gautestad.matapp.Food.Eple;
-import com.gmail.andreas.gautestad.matapp.Food.Kjottdeig;
-import com.gmail.andreas.gautestad.matapp.Food.Mais;
-import com.gmail.andreas.gautestad.matapp.Food.Melk;
-import com.gmail.andreas.gautestad.matapp.Food.Potet;
-import com.gmail.andreas.gautestad.matapp.Food.Tomat;
+
 
 /**
  * <p>Finnoppskrift klasse, for å finne ingrediensene</p>
@@ -28,12 +22,14 @@ public class FinnOppskrift extends AppCompatActivity {
 
     //Setter inn array for list.
     private ListView matListen;
-    private String [] matArray = {"Mais", "Tomat", "Potet", "Kjøttdeig", "Eple", "Agurk", "Melk"};
+    private String [] matArray = {"Agurk", "Tomat", "Potet", "Kjøttdeig", "Eple", "Mais", "Melk"};
+    SharedPreferences ingrediens = getApplicationContext().getSharedPreferences("loginData", MODE_PRIVATE);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finn_oppskrift);
+
 
 
         //Henter id fra activity_finn_oppskrift
@@ -47,44 +43,51 @@ public class FinnOppskrift extends AppCompatActivity {
 
                 if (position == 0) {
 
-                    Intent myIntent = new Intent(FinnOppskrift.this, Mais.class);
-                    startActivityForResult(myIntent, 0);
+                    Intent myIntent = new Intent(FinnOppskrift.this, OppskriftListe.class);
+                    checkPos(position);
+                    startActivity(myIntent);
                 }
 
                 if (position == 1) {
 
-                    Intent myIntent = new Intent(FinnOppskrift.this, Tomat.class);
-                    startActivityForResult(myIntent, 0);
+                    Intent myIntent = new Intent(FinnOppskrift.this, OppskriftListe.class);
+                    checkPos(position);
+                    startActivity(myIntent);
                 }
 
                 if (position == 2) {
 
-                    Intent myIntent = new Intent(FinnOppskrift.this, Potet.class);
-                    startActivityForResult(myIntent, 0);
+                    Intent myIntent = new Intent(FinnOppskrift.this, OppskriftListe.class);
+                    checkPos(position);
+                    startActivity(myIntent);
                 }
 
                 if (position == 3) {
 
-                    Intent myIntent = new Intent(FinnOppskrift.this, Kjottdeig.class);
-                    startActivityForResult(myIntent, 0);
+                    Intent myIntent = new Intent(FinnOppskrift.this, OppskriftListe.class);
+                    checkPos(position);
+                    startActivity(myIntent);
                 }
 
                 if (position == 4) {
 
-                    Intent myIntent = new Intent(FinnOppskrift.this, Eple.class);
-                    startActivityForResult(myIntent, 0);
+                    Intent myIntent = new Intent(FinnOppskrift.this, OppskriftListe.class);
+                    checkPos(position);
+                    startActivity(myIntent);
                 }
 
                 if (position == 5) {
 
-                    Intent myIntent = new Intent(FinnOppskrift.this, Agurk.class);
-                    startActivityForResult(myIntent, 0);
+                    Intent myIntent = new Intent(FinnOppskrift.this, OppskriftListe.class);
+                    checkPos(position);
+                    startActivity(myIntent);
                 }
 
                 if (position == 6) {
 
-                    Intent myIntent = new Intent(FinnOppskrift.this, Melk.class);
-                    startActivityForResult(myIntent, 0);
+                    Intent myIntent = new Intent(FinnOppskrift.this, OppskriftListe.class);
+                    checkPos(position);
+                    startActivity(myIntent);
                 }
             }
         });
@@ -104,5 +107,13 @@ public class FinnOppskrift extends AppCompatActivity {
             LinearLayout currentLayout = (LinearLayout) findViewById(R.id.finnOppskrift);
             currentLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
         }
+    }
+
+    public void checkPos(int i){
+
+        SharedPreferences.Editor editor = ingrediens.edit();
+        editor.putInt("ingrediens", i+1);
+        editor.commit();
+
     }
 }
