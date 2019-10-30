@@ -22,8 +22,8 @@ public class FinnOppskrift extends AppCompatActivity {
 
     //Setter inn array for list.
     private ListView matListen;
-    private String [] matArray = {"Agurk", "Tomat", "Potet", "Kjøttdeig", "Eple", "Mais", "Melk"};
-    SharedPreferences ingrediens = getApplicationContext().getSharedPreferences("loginData", MODE_PRIVATE);
+    private String [] matArray = {"Agurk", "Eple", "Kjøttdeig", "Mais", "Melk", "Potet", "Tomat"};
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,49 +44,49 @@ public class FinnOppskrift extends AppCompatActivity {
                 if (position == 0) {
 
                     Intent myIntent = new Intent(FinnOppskrift.this, OppskriftListe.class);
-                    checkPos(position);
+                    checkPos(position+1);
                     startActivity(myIntent);
                 }
 
                 if (position == 1) {
 
                     Intent myIntent = new Intent(FinnOppskrift.this, OppskriftListe.class);
-                    checkPos(position);
+                    checkPos(position+1);
                     startActivity(myIntent);
                 }
 
                 if (position == 2) {
 
                     Intent myIntent = new Intent(FinnOppskrift.this, OppskriftListe.class);
-                    checkPos(position);
+                    checkPos(position+1);
                     startActivity(myIntent);
                 }
 
                 if (position == 3) {
 
                     Intent myIntent = new Intent(FinnOppskrift.this, OppskriftListe.class);
-                    checkPos(position);
+                    checkPos(position+1);
                     startActivity(myIntent);
                 }
 
                 if (position == 4) {
 
                     Intent myIntent = new Intent(FinnOppskrift.this, OppskriftListe.class);
-                    checkPos(position);
+                    checkPos(position+1);
                     startActivity(myIntent);
                 }
 
                 if (position == 5) {
 
                     Intent myIntent = new Intent(FinnOppskrift.this, OppskriftListe.class);
-                    checkPos(position);
+                    checkPos(position+1);
                     startActivity(myIntent);
                 }
 
                 if (position == 6) {
 
                     Intent myIntent = new Intent(FinnOppskrift.this, OppskriftListe.class);
-                    checkPos(position);
+                    checkPos(position+1);
                     startActivity(myIntent);
                 }
             }
@@ -110,10 +110,10 @@ public class FinnOppskrift extends AppCompatActivity {
     }
 
     public void checkPos(int i){
-
+        SharedPreferences ingrediens = getApplicationContext().getSharedPreferences("ingrediens", MODE_PRIVATE);
         SharedPreferences.Editor editor = ingrediens.edit();
-        editor.putInt("ingrediens", i+1);
+        editor.putInt("ingrediens", i);
         editor.commit();
-
+        System.out.println("Sjekker pos: " + i);
     }
 }
